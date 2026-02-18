@@ -6,14 +6,9 @@ interface MarkdownRendererProps {
   isOutbound: boolean;
 }
 
-/**
- * Lightweight markdown renderer for chat bubbles.
- * Handles: **bold**, *italic*, `code`, and plain text.
- * Full markdown lib can replace this later if needed.
- */
 export function MarkdownRenderer({ text, isOutbound }: MarkdownRendererProps) {
-  const textColor = isOutbound ? "#fff" : "#e5e5e5";
-  const codeColor = isOutbound ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.1)";
+  const textColor = isOutbound ? "#111" : "#fff";
+  const codeColor = isOutbound ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.15)";
 
   const parts = parseMarkdown(text);
 
@@ -46,14 +41,12 @@ interface TextPart {
 
 function parseMarkdown(input: string): TextPart[] {
   const parts: TextPart[] = [];
-  // Match **bold**, *italic*, `code` — simple non-greedy
   const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g;
 
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
   while ((match = regex.exec(input)) !== null) {
-    // Text before this match
     if (match.index > lastIndex) {
       parts.push({ type: "text", text: input.slice(lastIndex, match.index) });
     }
@@ -69,7 +62,6 @@ function parseMarkdown(input: string): TextPart[] {
     lastIndex = match.index + match[0].length;
   }
 
-  // Remaining text
   if (lastIndex < input.length) {
     parts.push({ type: "text", text: input.slice(lastIndex) });
   }
@@ -83,19 +75,20 @@ function parseMarkdown(input: string): TextPart[] {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: "400",
   },
   bold: {
-    fontWeight: "700",
+    fontWeight: "600",
   },
   italic: {
     fontStyle: "italic",
   },
   code: {
     fontFamily: "monospace",
-    fontSize: 14,
-    borderRadius: 4,
+    fontSize: 13,
+    borderRadius: 3,
     paddingHorizontal: 4,
     paddingVertical: 1,
   },

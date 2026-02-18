@@ -3,10 +3,10 @@ import type { ChatMessage } from "../lib/types";
 import { MarkdownRenderer } from "./MarkdownRenderer";
 
 const PLATFORM_COLORS: Record<string, string> = {
-  web: "#6366f1",
+  web: "#111",
   telegram: "#2563eb",
   sms: "#16a34a",
-  voice: "#ea580c",
+  voice: "#d97706",
 };
 
 const PLATFORM_LABELS: Record<string, string> = {
@@ -23,7 +23,7 @@ interface ChatBubbleProps {
 
 export function ChatBubble({ message, showPlatform }: ChatBubbleProps) {
   const isOutbound = message.direction === "outbound";
-  const platformColor = PLATFORM_COLORS[message.platform] || "#666";
+  const platformColor = PLATFORM_COLORS[message.platform] || "#999";
 
   return (
     <View style={[styles.row, isOutbound ? styles.rowOutbound : styles.rowInbound]}>
@@ -41,10 +41,7 @@ export function ChatBubble({ message, showPlatform }: ChatBubbleProps) {
             <Text style={styles.cursor}>|</Text>
           </Text>
         ) : (
-          <MarkdownRenderer
-            text={message.text}
-            isOutbound={isOutbound}
-          />
+          <MarkdownRenderer text={message.text} isOutbound={isOutbound} />
         )}
         <Text style={[styles.time, isOutbound ? styles.timeOutbound : styles.timeInbound]}>
           {formatTime(message.timestamp)}
@@ -60,14 +57,14 @@ function formatTime(date: Date): string {
 
 const styles = StyleSheet.create({
   row: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     marginVertical: 2,
   },
   rowInbound: {
-    alignItems: "flex-start",
+    alignItems: "flex-end",
   },
   rowOutbound: {
-    alignItems: "flex-end",
+    alignItems: "flex-start",
   },
   bubble: {
     maxWidth: "80%",
@@ -76,12 +73,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   bubbleInbound: {
-    backgroundColor: "#1e1e1e",
-    borderBottomLeftRadius: 4,
+    backgroundColor: "#111",
+    borderBottomRightRadius: 4,
   },
   bubbleOutbound: {
-    backgroundColor: "#2563eb",
-    borderBottomRightRadius: 4,
+    backgroundColor: "#f5f5f5",
+    borderBottomLeftRadius: 4,
   },
   platformBadge: {
     alignSelf: "flex-start",
@@ -93,30 +90,32 @@ const styles = StyleSheet.create({
   platformText: {
     color: "#fff",
     fontSize: 10,
-    fontWeight: "600",
+    fontWeight: "500",
   },
   text: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: "400",
   },
   textInbound: {
-    color: "#e5e5e5",
-  },
-  textOutbound: {
     color: "#fff",
   },
+  textOutbound: {
+    color: "#111",
+  },
   cursor: {
-    color: "#60a5fa",
+    color: "#999",
     fontWeight: "300",
   },
   time: {
-    fontSize: 11,
+    fontSize: 10,
     marginTop: 4,
+    fontWeight: "300",
   },
   timeInbound: {
-    color: "#666",
+    color: "rgba(255,255,255,0.5)",
   },
   timeOutbound: {
-    color: "rgba(255,255,255,0.6)",
+    color: "#bbb",
   },
 });

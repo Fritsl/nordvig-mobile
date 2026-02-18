@@ -19,14 +19,13 @@ export default function ChatScreen() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
-  const [showAllChannels, setShowAllChannels] = useState(true);
+  const [showAllChannels] = useState(true);
   const streamingRef = useRef<string>("");
   const flatListRef = useRef<FlatList>(null);
   const { loadInitial, loadMore, hasMore, isLoading: historyLoading } = useHistory();
 
   const ws = useWebSocket({
-    onConnected: (_ownerName, _contactId) => {
-      // Load history after connection established
+    onConnected: () => {
       loadInitial().then((msgs) => {
         setMessages(msgs);
       });
@@ -41,7 +40,6 @@ export default function ChatScreen() {
             { ...last, text: streamingRef.current },
           ];
         }
-        // First token — create streaming message
         return [
           ...prev,
           {
@@ -67,7 +65,6 @@ export default function ChatScreen() {
       streamingRef.current = "";
 
       setMessages((prev) => {
-        // Replace streaming message with final
         const withoutStreaming = prev.filter((m) => !m.isStreaming);
         return [
           ...withoutStreaming,
@@ -86,7 +83,6 @@ export default function ChatScreen() {
       setIsProcessing(false);
       setActiveTool(null);
       streamingRef.current = "";
-      // Show error as system message
       setMessages((prev) => [
         ...prev.filter((m) => !m.isStreaming),
         {
@@ -100,7 +96,6 @@ export default function ChatScreen() {
     },
   });
 
-  // Connect on mount
   useEffect(() => {
     ws.connect();
     return () => ws.disconnect();
@@ -108,7 +103,6 @@ export default function ChatScreen() {
 
   const handleSend = useCallback(
     (text: string) => {
-      // Add user message immediately (optimistic)
       setMessages((prev) => [
         ...prev,
         {
@@ -144,7 +138,7 @@ export default function ChatScreen() {
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Nordvig</Text>
+        <Text style={styles.headerBrand}>NORDVIG</Text>
         {!ws.isConnected && (
           <Text style={styles.connectionStatus}>Reconnecting...</Text>
         )}
@@ -163,11 +157,9 @@ export default function ChatScreen() {
           style={styles.messageList}
           contentContainerStyle={styles.messageListContent}
           inverted={false}
-          onEndReached={() => {}}
           onStartReached={handleLoadMore}
           onStartReachedThreshold={0.5}
           onContentSizeChange={() => {
-            // Auto-scroll to bottom on new message
             if (!historyLoading) {
               flatListRef.current?.scrollToEnd({ animated: true });
             }
@@ -195,25 +187,27 @@ export default function ChatScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "#fff",
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#222",
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f0f0f0",
   },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#fff",
+  headerBrand: {
+    fontSize: 14,
+    fontWeight: "300",
+    color: "#111",
+    letterSpacing: 4,
   },
   connectionStatus: {
-    fontSize: 12,
-    color: "#f59e0b",
+    fontSize: 11,
+    color: "#d97706",
+    fontWeight: "400",
   },
   chatArea: {
     flex: 1,
@@ -231,12 +225,14 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
   emptyText: {
-    color: "#666",
-    fontSize: 16,
+    color: "#999",
+    fontSize: 15,
+    fontWeight: "300",
   },
   emptyHint: {
-    color: "#444",
+    color: "#ccc",
     fontSize: 13,
+    fontWeight: "300",
     marginTop: 4,
   },
 });

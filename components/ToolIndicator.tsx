@@ -21,7 +21,7 @@ export function ToolIndicator({ tool }: ToolIndicatorProps) {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="small" color="#6366f1" />
+      <ActivityIndicator size="small" color="#999" />
       <Text style={styles.text}>{label}...</Text>
     </View>
   );
@@ -36,8 +36,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   text: {
-    color: "#888",
-    fontSize: 13,
+    color: "#999",
+    fontSize: 12,
+    fontWeight: "300",
     fontStyle: "italic",
   },
 });

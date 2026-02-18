@@ -4,7 +4,6 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Keyboard,
   ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -34,7 +33,7 @@ export function ChatInput({ onSend, disabled, isProcessing }: ChatInputProps) {
         ref={inputRef}
         style={styles.input}
         placeholder="Message..."
-        placeholderTextColor="#666"
+        placeholderTextColor="#bbb"
         value={text}
         onChangeText={setText}
         multiline
@@ -55,8 +54,8 @@ export function ChatInput({ onSend, disabled, isProcessing }: ChatInputProps) {
         ) : (
           <Ionicons
             name="arrow-up"
-            size={20}
-            color={canSend ? "#fff" : "#555"}
+            size={18}
+            color={canSend ? "#fff" : "#ccc"}
           />
         )}
       </TouchableOpacity>
@@ -68,33 +67,34 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "flex-end",
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     paddingVertical: 8,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: "#222",
-    backgroundColor: "#0a0a0a",
+    borderTopWidth: 1,
+    borderTopColor: "#f0f0f0",
+    backgroundColor: "#fff",
   },
   input: {
     flex: 1,
-    backgroundColor: "#1a1a1a",
+    backgroundColor: "#f5f5f5",
     borderRadius: 20,
     paddingHorizontal: 16,
     paddingTop: 10,
     paddingBottom: 10,
-    fontSize: 16,
-    color: "#fff",
+    fontSize: 15,
+    color: "#111",
     maxHeight: 120,
     marginRight: 8,
+    fontWeight: "400",
   },
   sendButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "#333",
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    backgroundColor: "#ddd",
     alignItems: "center",
     justifyContent: "center",
   },
   sendButtonActive: {
-    backgroundColor: "#2563eb",
+    backgroundColor: "#111",
   },
 });

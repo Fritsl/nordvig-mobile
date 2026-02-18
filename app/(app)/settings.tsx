@@ -78,37 +78,44 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "#fff",
     padding: 16,
   },
   card: {
-    backgroundColor: "#141414",
+    backgroundColor: "#fff",
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#f0f0f0",
   },
   cardTitle: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
+    color: "#111",
+    fontSize: 14,
+    fontWeight: "300",
+    letterSpacing: 1,
+    textTransform: "uppercase",
     marginBottom: 12,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f5f5f5",
   },
   label: {
-    color: "#888",
+    color: "#999",
     fontSize: 14,
+    fontWeight: "300",
   },
   value: {
-    color: "#e5e5e5",
+    color: "#111",
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: "400",
   },
   logoutButton: {
-    backgroundColor: "#1a1a1a",
+    backgroundColor: "#fff",
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: "center",
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     color: "#ef4444",
-    fontSize: 16,
-    fontWeight: "600",
+    fontSize: 14,
+    fontWeight: "400",
   },
 });

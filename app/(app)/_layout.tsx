@@ -5,15 +5,24 @@ export default function AppLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerStyle: { backgroundColor: "#0a0a0a" },
-        headerTintColor: "#fff",
-        headerTitleStyle: { fontWeight: "600" },
-        tabBarStyle: {
-          backgroundColor: "#0a0a0a",
-          borderTopColor: "#222",
+        headerStyle: {
+          backgroundColor: "#fff",
         },
-        tabBarActiveTintColor: "#2563eb",
-        tabBarInactiveTintColor: "#666",
+        headerTintColor: "#111",
+        headerTitleStyle: { fontWeight: "300", letterSpacing: 1 },
+        headerShadowVisible: false,
+        tabBarStyle: {
+          backgroundColor: "#fff",
+          borderTopColor: "#f0f0f0",
+          borderTopWidth: 1,
+        },
+        tabBarActiveTintColor: "#111",
+        tabBarInactiveTintColor: "#bbb",
+        tabBarLabelStyle: {
+          fontSize: 10,
+          fontWeight: "500",
+          letterSpacing: 0.5,
+        },
       }}
     >
       <Tabs.Screen
@@ -22,7 +31,7 @@ export default function AppLayout() {
           title: "Chat",
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="chatbubble" size={size} color={color} />
+            <Ionicons name="chatbubble-outline" size={size} color={color} />
           ),
         }}
       />
@@ -31,7 +40,7 @@ export default function AppLayout() {
         options={{
           title: "Dashboard",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="grid" size={size} color={color} />
+            <Ionicons name="grid-outline" size={size} color={color} />
           ),
         }}
       />
@@ -40,7 +49,7 @@ export default function AppLayout() {
         options={{
           title: "Settings",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings" size={size} color={color} />
+            <Ionicons name="settings-outline" size={size} color={color} />
           ),
         }}
       />

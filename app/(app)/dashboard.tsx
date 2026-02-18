@@ -59,7 +59,7 @@ export default function DashboardScreen() {
   if (isLoading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#2563eb" />
+        <ActivityIndicator size="large" color="#111" />
       </View>
     );
   }
@@ -79,7 +79,7 @@ export default function DashboardScreen() {
         <RefreshControl
           refreshing={isLoading}
           onRefresh={fetchData}
-          tintColor="#2563eb"
+          tintColor="#111"
         />
       }
     >
@@ -151,44 +151,51 @@ function MoodBar({ label, value }: { label: string; value: number }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "#fff",
     padding: 16,
   },
   center: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "#fff",
   },
   error: {
     color: "#ef4444",
     fontSize: 14,
   },
   card: {
-    backgroundColor: "#141414",
+    backgroundColor: "#fff",
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#f0f0f0",
   },
   cardTitle: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
+    color: "#111",
+    fontSize: 14,
+    fontWeight: "300",
+    letterSpacing: 1,
+    textTransform: "uppercase",
     marginBottom: 12,
   },
   infoRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f5f5f5",
   },
   infoLabel: {
-    color: "#888",
+    color: "#999",
     fontSize: 14,
+    fontWeight: "300",
   },
   infoValue: {
-    color: "#e5e5e5",
+    color: "#111",
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: "400",
   },
   moodRow: {
     flexDirection: "row",
@@ -197,30 +204,33 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   moodLabel: {
-    color: "#888",
+    color: "#999",
     fontSize: 13,
+    fontWeight: "300",
     width: 90,
   },
   moodBarBg: {
     flex: 1,
-    height: 6,
-    backgroundColor: "#222",
-    borderRadius: 3,
+    height: 4,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 2,
   },
   moodBarFill: {
-    height: 6,
-    borderRadius: 3,
+    height: 4,
+    borderRadius: 2,
   },
   moodValue: {
-    color: "#888",
+    color: "#999",
     fontSize: 12,
+    fontWeight: "300",
     width: 28,
     textAlign: "right",
   },
   goalText: {
-    color: "#ccc",
+    color: "#333",
     fontSize: 14,
     lineHeight: 20,
+    fontWeight: "300",
     paddingVertical: 2,
   },
 });

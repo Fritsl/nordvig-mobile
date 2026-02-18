@@ -7,7 +7,6 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
-  Alert,
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -47,12 +46,10 @@ export default function LoginScreen() {
     >
       <View style={styles.content}>
         <Text style={styles.brand}>NORDVIG</Text>
-        <Text style={styles.subtitle}>Your AI assistant</Text>
+        <Text style={styles.subtitle}>YOUR AI ASSISTANT</Text>
 
         <View style={styles.form}>
-          <Text style={styles.label}>
-            Enter the 6-digit login code from your assistant
-          </Text>
+          <Text style={styles.label}>LOGIN CODE</Text>
 
           <TextInput
             ref={inputRef}
@@ -63,7 +60,7 @@ export default function LoginScreen() {
               setError(null);
             }}
             placeholder="000000"
-            placeholderTextColor="#444"
+            placeholderTextColor="#ccc"
             keyboardType="number-pad"
             maxLength={6}
             autoFocus
@@ -81,13 +78,20 @@ export default function LoginScreen() {
             {isLoading ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={styles.buttonText}>Log In</Text>
+              <Text
+                style={[
+                  styles.buttonText,
+                  code.length === 6 && styles.buttonTextActive,
+                ]}
+              >
+                Log In
+              </Text>
             )}
           </TouchableOpacity>
         </View>
 
         <Text style={styles.hint}>
-          Ask your assistant "give me a login code" to get started
+          Ask your assistant for a login code to get started
         </Text>
       </View>
     </KeyboardAvoidingView>
@@ -97,73 +101,84 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "#fff",
   },
   content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 32,
+    paddingHorizontal: 40,
   },
   brand: {
-    fontSize: 36,
-    fontWeight: "800",
-    color: "#fff",
-    letterSpacing: 6,
+    fontSize: 42,
+    fontWeight: "200",
+    color: "#111",
+    letterSpacing: 14,
   },
   subtitle: {
-    fontSize: 14,
-    color: "#666",
-    marginTop: 8,
-    marginBottom: 48,
+    fontSize: 11,
+    fontWeight: "400",
+    color: "#999",
+    letterSpacing: 4,
+    marginTop: 10,
+    marginBottom: 56,
   },
   form: {
     width: "100%",
+    maxWidth: 280,
     alignItems: "center",
   },
   label: {
-    fontSize: 14,
+    fontSize: 10,
+    fontWeight: "500",
     color: "#999",
+    letterSpacing: 2,
     marginBottom: 16,
-    textAlign: "center",
   },
   codeInput: {
-    width: 200,
-    fontSize: 32,
-    fontWeight: "600",
-    color: "#fff",
-    backgroundColor: "#1a1a1a",
-    borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    letterSpacing: 8,
-    marginBottom: 16,
+    width: "100%",
+    fontSize: 28,
+    fontWeight: "300",
+    color: "#111",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+    paddingVertical: 12,
+    letterSpacing: 10,
+    marginBottom: 24,
   },
   error: {
-    color: "#ef4444",
+    color: "#dc2626",
     fontSize: 13,
-    marginBottom: 12,
+    fontWeight: "400",
+    marginBottom: 16,
   },
   button: {
     width: "100%",
-    maxWidth: 200,
-    backgroundColor: "#333",
-    borderRadius: 12,
+    backgroundColor: "transparent",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#ddd",
     paddingVertical: 14,
     alignItems: "center",
   },
   buttonActive: {
-    backgroundColor: "#2563eb",
+    backgroundColor: "#111",
+    borderColor: "#111",
   },
   buttonText: {
+    color: "#ccc",
+    fontSize: 14,
+    fontWeight: "500",
+    letterSpacing: 1,
+  },
+  buttonTextActive: {
     color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
   },
   hint: {
-    color: "#555",
+    color: "#bbb",
     fontSize: 12,
-    marginTop: 48,
+    fontWeight: "300",
+    marginTop: 56,
     textAlign: "center",
   },
 });

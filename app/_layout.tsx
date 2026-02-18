@@ -35,19 +35,19 @@ export default function RootLayout() {
   if (isLoading) {
     return (
       <View style={styles.loading}>
-        <ActivityIndicator size="large" color="#2563eb" />
-        <StatusBar style="light" />
+        <ActivityIndicator size="large" color="#111" />
+        <StatusBar style="dark" />
       </View>
     );
   }
 
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: "#0a0a0a" },
+          contentStyle: { backgroundColor: "#fff" },
           animation: "fade",
         }}
       />
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "#fff",
   },
 });

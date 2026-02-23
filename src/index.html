@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Nordvig Messenger</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: #111; color: #fff;
+    height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  .brand {
+    font-size: 1.8rem; font-weight: 200; letter-spacing: 0.35em;
+    opacity: 0.9;
+  }
+  .sub {
+    font-size: 0.65rem; font-weight: 300; letter-spacing: 0.15em;
+    color: #666; margin-top: 0.5rem; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="brand">NORDVIG</div>
+  <div class="sub">Loading...</div>
+  <!-- This fallback page is shown briefly while the WebView loads nordvig.ai/owner -->
+  <script type="module" src="/js/native-bridge.js"></script>
+</body>
+</html>

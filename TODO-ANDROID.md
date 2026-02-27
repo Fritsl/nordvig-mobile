@@ -172,7 +172,7 @@ npx firebase-tools apps:sdkconfig ANDROID 1:178654354155:android:9abe76970881f34
 
 ## What's Next
 
-- [ ] **App icons** — Generate proper icons from `resources/icon-1024.png` (currently using default Android icon)
+- [x] **App icons** — Bold dark "N" (Arial Black) on white, generated at all densities via Python+Pillow
 - [ ] **Splash screen** — Currently shows dark screen with "NORDVIG" text; could use branded splash
 - [ ] **Release keystore** — Create signing key for Play Store (`keytool -genkey ...`)
 - [ ] **Release build** — `assembleRelease` with ProGuard/R8 minification
